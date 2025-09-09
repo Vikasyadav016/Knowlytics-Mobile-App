@@ -105,7 +105,6 @@ export default function Register() {
             </View>
           )}
 
-          {/* Form Fields */}
           <View style={styles.formRow}>
             <View style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}>
               <Text style={styles.label}>Full Name</Text>
@@ -114,7 +113,7 @@ export default function Register() {
                 placeholder="Full Name"
                 value={formField.fullName}
                 onChangeText={(text) => handleChange("fullName", text)}
-                placeholderTextColor="#666"
+                placeholderTextColor="#020202ff"
               />
             </View>
             <View style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}>
@@ -124,7 +123,7 @@ export default function Register() {
                 placeholder="Father's Name"
                 value={formField.fatherName}
                 onChangeText={(text) => handleChange("fatherName", text)}
-                placeholderTextColor="#666"
+                placeholderTextColor="#020202ff"
               />
             </View>
           </View>
@@ -137,7 +136,7 @@ export default function Register() {
                 placeholder="Mother's Name"
                 value={formField.motherName}
                 onChangeText={(text) => handleChange("motherName", text)}
-                placeholderTextColor="#666"
+                placeholderTextColor="#020202ff"
               />
             </View>
             <View style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}>
@@ -149,7 +148,7 @@ export default function Register() {
                 autoCapitalize="none"
                 value={formField.personalEmail}
                 onChangeText={(text) => handleChange("personalEmail", text)}
-                placeholderTextColor="#666"
+                placeholderTextColor="#020202ff"
               />
             </View>
           </View>
@@ -164,7 +163,7 @@ export default function Register() {
                 autoCapitalize="none"
                 value={formField.guardianEmail}
                 onChangeText={(text) => handleChange("guardianEmail", text)}
-                placeholderTextColor="#666"
+                placeholderTextColor="#020202ff"
               />
             </View>
             <View style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}>
@@ -175,7 +174,7 @@ export default function Register() {
                 keyboardType="phone-pad"
                 value={formField.studentContactNo}
                 onChangeText={(text) => handleChange("studentContactNo", text)}
-                placeholderTextColor="#666"
+                placeholderTextColor="#020202ff"
               />
             </View>
           </View>
@@ -189,13 +188,12 @@ export default function Register() {
                 keyboardType="phone-pad"
                 value={formField.guardianContactNo}
                 onChangeText={(text) => handleChange("guardianContactNo", text)}
-                placeholderTextColor="#666"
+                placeholderTextColor="#020202ff"
               />
             </View>
 
-            {/* Dropdown for Profession */}
             <View style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}>
-              <Text style={styles.label}>Profession</Text>
+              <Text style={styles.label}>Personal Profession</Text>
               <View style={styles.pickerWrapper}>
                 <Picker
                   selectedValue={formField.profession}
@@ -203,7 +201,7 @@ export default function Register() {
                     handleChange("profession", itemValue)
                   }
                   style={styles.picker}
-                  dropdownIconColor="#105a06ff"
+                  dropdownIconColor="#020202ff"
                 >
                   {professions.map((prof) => (
                     <Picker.Item
@@ -218,7 +216,6 @@ export default function Register() {
           </View>
 
           <View style={styles.formRow}>
-            {/* Dropdown for Guardian Profession */}
             <View style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}>
               <Text style={styles.label}>Guardian Profession</Text>
               <View style={styles.pickerWrapper}>
@@ -228,7 +225,7 @@ export default function Register() {
                     handleChange("guardianProfession", itemValue)
                   }
                   style={styles.picker}
-                  dropdownIconColor="#105a06ff"
+                  dropdownIconColor="#020202ff"
                 >
                   {professions.map((prof) => (
                     <Picker.Item
@@ -251,7 +248,7 @@ export default function Register() {
               secureTextEntry
               value={formField.password}
               onChangeText={(text) => handleChange("password", text)}
-              placeholderTextColor="#666"
+              placeholderTextColor="#020202ff"
             />
           </View>
 
@@ -263,11 +260,10 @@ export default function Register() {
               secureTextEntry
               value={formField.confirmPassword}
               onChangeText={(text) => handleChange("confirmPassword", text)}
-              placeholderTextColor="#666"
+              placeholderTextColor="#020202ff"
             />
           </View>
 
-          {/* Terms & Conditions Checkbox */}
           <View style={styles.termsContainer}>
             <Switch
               value={acceptTerms}
@@ -283,7 +279,6 @@ export default function Register() {
             </Text>
           </View>
 
-          {/* Buttons */}
           <View style={styles.buttonRow}>
             <TouchableOpacity
               onPress={handleRegister}
@@ -397,7 +392,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 15,
     fontSize: 16,
-    color: "#105a06ff",
+    color: "#020202ff",
     backgroundColor: "#fafafa",
   },
 
@@ -410,7 +405,7 @@ const styles = StyleSheet.create({
   },
   picker: {
     height: 50,
-    color: "#105a06ff",
+    color: "#020202ff",
   },
 
   termsContainer: {
