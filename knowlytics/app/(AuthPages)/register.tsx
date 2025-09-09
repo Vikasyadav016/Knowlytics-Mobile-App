@@ -333,7 +333,7 @@ export default function Register() {
               <View
                 style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
               >
-                <Text style={styles.label}>Student Contact No</Text>
+                <Text style={styles.label}>Personal Contact No</Text>
                 <TextInput
                   style={styles.input}
                   placeholder="Student Contact No"
