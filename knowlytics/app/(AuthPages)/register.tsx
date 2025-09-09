@@ -15,6 +15,7 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 import { Picker } from "@react-native-picker/picker";
+import Loader from "@/commonComponents/Loader";
 
 export default function Register() {
   const router = useRouter();
@@ -48,6 +49,7 @@ export default function Register() {
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [loader, setLoader] = useState(false);
 
   const validateField = (key: string, value: string) => {
     let error = "";
@@ -130,9 +132,15 @@ export default function Register() {
     setFormErrors(newErrors);
 
     if (Object.keys(newErrors).length > 0) {
-      return; 
+      return;
+    } else {
+      setLoader(true);
+      alert("Registration successful!");
+      console.log("formData:", formField);
+      setTimeout(() => {
+        setLoader(false);
+      }, 1000);
     }
-    alert("Registration successful!");
   };
 
   const getFieldError = (key: string, value: string): string => {
@@ -180,346 +188,378 @@ export default function Register() {
   ];
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
-      style={styles.container}
-    >
-      <LinearGradient
-        colors={["#a8310aff", "#105a06ff"]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.background}
-      />
-      <ScrollView
-        contentContainerStyle={styles.scrollContainer}
-        keyboardShouldPersistTaps="handled"
+    <>
+      <Loader visible={loader} />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        style={styles.container}
       >
-        <View style={[styles.card, { width: cardWidth }]}>
-          <Text style={styles.title}>Register here</Text>
+        <LinearGradient
+          colors={["#a8310aff", "#105a06ff"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.background}
+        />
+        <ScrollView
+          contentContainerStyle={styles.scrollContainer}
+          keyboardShouldPersistTaps="handled"
+        >
+          <View style={[styles.card, { width: cardWidth }]}>
+            <Text style={styles.title}>Register here</Text>
 
-          {error && (
-            <View style={styles.tooltip}>
-              <Text style={styles.tooltipText}>{error}</Text>
-              <Pressable
-                onPress={() => setError(null)}
-                style={styles.closeButton}
-              >
-                <Text style={styles.closeText}>×</Text>
-              </Pressable>
-            </View>
-          )}
-
-          <View
-            style={[styles.formRow, isLargeScreen && { flexDirection: "row" }]}
-          >
-            <View
-              style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
-            >
-              <Text style={styles.label}>Full Name</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Full Name"
-                value={formField.fullName}
-                onChangeText={(text) => handleChange("fullName", text)}
-                placeholderTextColor="#020202ff"
-              />
-              {formErrors.fullName && (
-                <Text style={{ color: "red", fontSize: 12 }}>
-                  {formErrors.fullName}
-                </Text>
-              )}
-            </View>
-            <View
-              style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
-            >
-              <Text style={styles.label}>Father's Name</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Father's Name"
-                value={formField.fatherName}
-                onChangeText={(text) => handleChange("fatherName", text)}
-                placeholderTextColor="#020202ff"
-              />
-              {formErrors.fatherName && (
-                <Text style={{ color: "red", fontSize: 12 }}>
-                  {formErrors.fatherName}
-                </Text>
-              )}
-            </View>
-          </View>
-
-          <View
-            style={[styles.formRow, isLargeScreen && { flexDirection: "row" }]}
-          >
-            <View
-              style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
-            >
-              <Text style={styles.label}>Mother's Name</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Mother's Name"
-                value={formField.motherName}
-                onChangeText={(text) => handleChange("motherName", text)}
-                placeholderTextColor="#020202ff"
-              />
-              {formErrors.motherName && (
-                <Text style={{ color: "red", fontSize: 12 }}>
-                  {formErrors.motherName}
-                </Text>
-              )}
-            </View>
-            <View
-              style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
-            >
-              <Text style={styles.label}>Personal Email</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Personal Email"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                value={formField.personalEmail}
-                onChangeText={(text) => handleChange("personalEmail", text)}
-                placeholderTextColor="#020202ff"
-              />
-              {formErrors.personalEmail && (
-                <Text style={{ color: "red", fontSize: 12 }}>
-                  {formErrors.personalEmail}
-                </Text>
-              )}
-            </View>
-          </View>
-
-          <View
-            style={[styles.formRow, isLargeScreen && { flexDirection: "row" }]}
-          >
-            <View
-              style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
-            >
-              <Text style={styles.label}>Guardian Email</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Guardian Email"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                value={formField.guardianEmail}
-                onChangeText={(text) => handleChange("guardianEmail", text)}
-                placeholderTextColor="#020202ff"
-              />
-              {formErrors.guardianEmail && (
-                <Text style={{ color: "red", fontSize: 12 }}>
-                  {formErrors.guardianEmail}
-                </Text>
-              )}
-            </View>
-            <View
-              style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
-            >
-              <Text style={styles.label}>Student Contact No</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Student Contact No"
-                keyboardType="phone-pad"
-                value={formField.studentContactNo}
-                onChangeText={(text) => handleChange("studentContactNo", text)}
-                placeholderTextColor="#020202ff"
-              />
-              {formErrors.studentContactNo && (
-                <Text style={{ color: "red", fontSize: 12 }}>
-                  {formErrors.studentContactNo}
-                </Text>
-              )}
-            </View>
-          </View>
-
-          <View
-            style={[styles.formRow, isLargeScreen && { flexDirection: "row" }]}
-          >
-            <View
-              style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
-            >
-              <Text style={styles.label}>Guardian Contact No</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Guardian Contact No"
-                keyboardType="phone-pad"
-                value={formField.guardianContactNo}
-                onChangeText={(text) => handleChange("guardianContactNo", text)}
-                placeholderTextColor="#020202ff"
-              />
-              {formErrors.guardianContactNo && (
-                <Text style={{ color: "red", fontSize: 12 }}>
-                  {formErrors.guardianContactNo}
-                </Text>
-              )}
-            </View>
-
-            <View
-              style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
-            >
-              <Text style={styles.label}>Personal Profession</Text>
-              <View style={styles.pickerWrapper}>
-                <Picker
-                  selectedValue={formField.profession}
-                  onValueChange={(itemValue: any) =>
-                    handleChange("profession", itemValue)
-                  }
-                  style={styles.picker}
-                  dropdownIconColor="#020202ff"
+            {error && (
+              <View style={styles.tooltip}>
+                <Text style={styles.tooltipText}>{error}</Text>
+                <Pressable
+                  onPress={() => setError(null)}
+                  style={styles.closeButton}
                 >
-                  {professions.map((prof) => (
-                    <Picker.Item
-                      key={prof}
-                      label={prof === "" ? "Select Profession" : prof}
-                      value={prof}
-                    />
-                  ))}
-                </Picker>
+                  <Text style={styles.closeText}>×</Text>
+                </Pressable>
               </View>
-              {formErrors.profession && (
+            )}
+
+            <View
+              style={[
+                styles.formRow,
+                isLargeScreen && { flexDirection: "row" },
+              ]}
+            >
+              <View
+                style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
+              >
+                <Text style={styles.label}>Full Name</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Full Name"
+                  value={formField.fullName}
+                  onChangeText={(text) => handleChange("fullName", text)}
+                  placeholderTextColor="#020202ff"
+                />
+                {formErrors.fullName && (
+                  <Text style={{ color: "red", fontSize: 12 }}>
+                    {formErrors.fullName}
+                  </Text>
+                )}
+              </View>
+              <View
+                style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
+              >
+                <Text style={styles.label}>Father's Name</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Father's Name"
+                  value={formField.fatherName}
+                  onChangeText={(text) => handleChange("fatherName", text)}
+                  placeholderTextColor="#020202ff"
+                />
+                {formErrors.fatherName && (
+                  <Text style={{ color: "red", fontSize: 12 }}>
+                    {formErrors.fatherName}
+                  </Text>
+                )}
+              </View>
+            </View>
+
+            <View
+              style={[
+                styles.formRow,
+                isLargeScreen && { flexDirection: "row" },
+              ]}
+            >
+              <View
+                style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
+              >
+                <Text style={styles.label}>Mother's Name</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Mother's Name"
+                  value={formField.motherName}
+                  onChangeText={(text) => handleChange("motherName", text)}
+                  placeholderTextColor="#020202ff"
+                />
+                {formErrors.motherName && (
+                  <Text style={{ color: "red", fontSize: 12 }}>
+                    {formErrors.motherName}
+                  </Text>
+                )}
+              </View>
+              <View
+                style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
+              >
+                <Text style={styles.label}>Personal Email</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Personal Email"
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  value={formField.personalEmail}
+                  onChangeText={(text) => handleChange("personalEmail", text)}
+                  placeholderTextColor="#020202ff"
+                />
+                {formErrors.personalEmail && (
+                  <Text style={{ color: "red", fontSize: 12 }}>
+                    {formErrors.personalEmail}
+                  </Text>
+                )}
+              </View>
+            </View>
+
+            <View
+              style={[
+                styles.formRow,
+                isLargeScreen && { flexDirection: "row" },
+              ]}
+            >
+              <View
+                style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
+              >
+                <Text style={styles.label}>Guardian Email</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Guardian Email"
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  value={formField.guardianEmail}
+                  onChangeText={(text) => handleChange("guardianEmail", text)}
+                  placeholderTextColor="#020202ff"
+                />
+                {formErrors.guardianEmail && (
+                  <Text style={{ color: "red", fontSize: 12 }}>
+                    {formErrors.guardianEmail}
+                  </Text>
+                )}
+              </View>
+              <View
+                style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
+              >
+                <Text style={styles.label}>Student Contact No</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Student Contact No"
+                  keyboardType="phone-pad"
+                  value={formField.studentContactNo}
+                  maxLength={10}
+                  onChangeText={(text) => {
+                    const numericText = text.replace(/[^0-9]/g, "");
+                    if (numericText.length <= 10) {
+                      handleChange("studentContactNo", numericText)
+                    }
+                  }}
+                  placeholderTextColor="#020202ff"
+                />
+                {formErrors.studentContactNo && (
+                  <Text style={{ color: "red", fontSize: 12 }}>
+                    {formErrors.studentContactNo}
+                  </Text>
+                )}
+              </View>
+            </View>
+
+            <View
+              style={[
+                styles.formRow,
+                isLargeScreen && { flexDirection: "row" },
+              ]}
+            >
+              <View
+                style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
+              >
+                <Text style={styles.label}>Guardian Contact No</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Guardian Contact No"
+                  keyboardType="phone-pad"
+                  value={formField.guardianContactNo}
+                  maxLength={10} 
+                  onChangeText={(text) => {
+                    const numericText = text.replace(/[^0-9]/g, "");
+                    if (numericText.length <= 10) {
+                      handleChange("guardianContactNo", numericText);
+                    }
+                  }}
+                  placeholderTextColor="#020202ff"
+                />
+                {formErrors.guardianContactNo && (
+                  <Text style={{ color: "red", fontSize: 12 }}>
+                    {formErrors.guardianContactNo}
+                  </Text>
+                )}
+              </View>
+
+              <View
+                style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
+              >
+                <Text style={styles.label}>Personal Profession</Text>
+                <View style={styles.pickerWrapper}>
+                  <Picker
+                    selectedValue={formField.profession}
+                    onValueChange={(itemValue: any) =>
+                      handleChange("profession", itemValue)
+                    }
+                    style={styles.picker}
+                    dropdownIconColor="#020202ff"
+                  >
+                    {professions.map((prof) => (
+                      <Picker.Item
+                        key={prof}
+                        label={prof === "" ? "Select Profession" : prof}
+                        value={prof}
+                      />
+                    ))}
+                  </Picker>
+                </View>
+                {formErrors.profession && (
                   <Text style={{ color: "red", fontSize: 12 }}>
                     {formErrors.profession}
                   </Text>
                 )}
-            </View>
-          </View>
-          {formField.profession === "Student" && (
-            <View
-              style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
-            >
-              <Text style={styles.label}>Standard Of Student</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Standard of student"
-                keyboardType="phone-pad"
-                value={formField.standardOfStudent}
-                onChangeText={(text) => handleChange("standardOfStudent", text)}
-                placeholderTextColor="#020202ff"
-              />
-              {formErrors.standardOfStudent && (
-                <Text style={{ color: "red", fontSize: 12 }}>
-                  {formErrors.standardOfStudent}
-                </Text>
-              )}
-            </View>
-          )}
-
-          <View
-            style={[styles.formRow, isLargeScreen && { flexDirection: "row" }]}
-          >
-            <View
-              style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
-            >
-              <Text style={styles.label}>Guardian Profession</Text>
-              <View style={styles.pickerWrapper}>
-                <Picker
-                  selectedValue={formField.guardianProfession}
-                  onValueChange={(itemValue: any) =>
-                    handleChange("guardianProfession", itemValue)
-                  }
-                  style={styles.picker}
-                  dropdownIconColor="#020202ff"
-                >
-                  {professions.map((prof) => (
-                    <Picker.Item
-                      key={prof}
-                      label={prof === "" ? "Select Profession" : prof}
-                      value={prof}
-                    />
-                  ))}
-                </Picker>
               </View>
-              {formErrors.guardianProfession && (
+            </View>
+            {formField.profession === "Student" && (
+              <View
+                style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
+              >
+                <Text style={styles.label}>Standard Of Student</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Standard of student"
+                  keyboardType="phone-pad"
+                  value={formField.standardOfStudent}
+                  onChangeText={(text) =>
+                    handleChange("standardOfStudent", text)
+                  }
+                  placeholderTextColor="#020202ff"
+                />
+                {formErrors.standardOfStudent && (
+                  <Text style={{ color: "red", fontSize: 12 }}>
+                    {formErrors.standardOfStudent}
+                  </Text>
+                )}
+              </View>
+            )}
+
+            <View
+              style={[
+                styles.formRow,
+                isLargeScreen && { flexDirection: "row" },
+              ]}
+            >
+              <View
+                style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
+              >
+                <Text style={styles.label}>Guardian Profession</Text>
+                <View style={styles.pickerWrapper}>
+                  <Picker
+                    selectedValue={formField.guardianProfession}
+                    onValueChange={(itemValue: any) =>
+                      handleChange("guardianProfession", itemValue)
+                    }
+                    style={styles.picker}
+                    dropdownIconColor="#020202ff"
+                  >
+                    {professions.map((prof) => (
+                      <Picker.Item
+                        key={prof}
+                        label={prof === "" ? "Select Profession" : prof}
+                        value={prof}
+                      />
+                    ))}
+                  </Picker>
+                </View>
+                {formErrors.guardianProfession && (
                   <Text style={{ color: "red", fontSize: 12 }}>
                     {formErrors.guardianProfession}
                   </Text>
                 )}
+              </View>
+              <View
+                style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
+              />
             </View>
-            <View
-              style={[styles.inputWrapper, isLargeScreen && styles.halfWidth]}
-            />
-          </View>
 
-          <View style={styles.inputWrapper}>
-            <Text style={styles.label}>Password</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Password"
-              secureTextEntry
-              value={formField.password}
-              onChangeText={(text) => handleChange("password", text)}
-              placeholderTextColor="#020202ff"
-            />
-            {formErrors.password && (
-              <Text style={{ color: "red", fontSize: 12 }}>
-                {formErrors.password}
-              </Text>
-            )}
-          </View>
+            <View style={styles.inputWrapper}>
+              <Text style={styles.label}>Password</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Password"
+                secureTextEntry
+                value={formField.password}
+                onChangeText={(text) => handleChange("password", text)}
+                placeholderTextColor="#020202ff"
+              />
+              {formErrors.password && (
+                <Text style={{ color: "red", fontSize: 12 }}>
+                  {formErrors.password}
+                </Text>
+              )}
+            </View>
 
-          <View style={styles.inputWrapper}>
-            <Text style={styles.label}>Confirm Password</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Confirm Password"
-              secureTextEntry
-              value={formField.confirmPassword}
-              onChangeText={(text) => handleChange("confirmPassword", text)}
-              placeholderTextColor="#020202ff"
-            />
-            {formErrors.confirmPassword && (
-              <Text style={{ color: "red", fontSize: 12 }}>
-                {formErrors.confirmPassword}
-              </Text>
-            )}
-          </View>
+            <View style={styles.inputWrapper}>
+              <Text style={styles.label}>Confirm Password</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Confirm Password"
+                secureTextEntry
+                value={formField.confirmPassword}
+                onChangeText={(text) => handleChange("confirmPassword", text)}
+                placeholderTextColor="#020202ff"
+              />
+              {formErrors.confirmPassword && (
+                <Text style={{ color: "red", fontSize: 12 }}>
+                  {formErrors.confirmPassword}
+                </Text>
+              )}
+            </View>
 
-          <View style={styles.termsContainer}>
-            <Switch
-              value={acceptTerms}
-              onValueChange={setAcceptTerms}
-              trackColor={{ false: "#ccc", true: "#105a06ff" }}
-              thumbColor={acceptTerms ? "#065a03" : "#f4f3f4"}
-            />
-            <Text style={styles.termsText}>
-              I accept the{" "}
-              <Text style={{ color: "#105a06ff", fontWeight: "bold" }}>
-                Terms and Conditions
+            <View style={styles.termsContainer}>
+              <Switch
+                value={acceptTerms}
+                onValueChange={setAcceptTerms}
+                trackColor={{ false: "#ccc", true: "#105a06ff" }}
+                thumbColor={acceptTerms ? "#065a03" : "#f4f3f4"}
+              />
+              <Text style={styles.termsText}>
+                I accept the{" "}
+                <Text style={{ color: "#105a06ff", fontWeight: "bold" }}>
+                  Terms and Conditions
+                </Text>
               </Text>
-            </Text>
-          </View>
-          {formErrors.acceptTerms && (
+            </View>
+            {formErrors.acceptTerms && (
               <Text style={{ color: "red", fontSize: 12, marginTop: 4 }}>
                 {formErrors.acceptTerms}
               </Text>
             )}
 
-          <View style={styles.buttonRow}>
-            <TouchableOpacity
-              onPress={handleRegister}
-              activeOpacity={0.8}
-              style={styles.buttonWrapper}
-            >
-              <LinearGradient
-                colors={["#a8310aff", "#105a06ff"]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={styles.button}
+            <View style={styles.buttonRow}>
+              <TouchableOpacity
+                onPress={handleRegister}
+                activeOpacity={0.8}
+                style={styles.buttonWrapper}
               >
-                <Text style={styles.buttonText}>Register</Text>
-              </LinearGradient>
-            </TouchableOpacity>
+                <LinearGradient
+                  colors={["#a8310aff", "#105a06ff"]}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={styles.button}
+                >
+                  <Text style={styles.buttonText}>Register</Text>
+                </LinearGradient>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => router.back()}
-              activeOpacity={0.7}
-              style={[styles.button, styles.cancelButton]}
-            >
-              <Text style={styles.cancelText}>Cancel</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => router.back()}
+                activeOpacity={0.7}
+                style={[styles.button, styles.cancelButton]}
+              >
+                <Text style={styles.cancelText}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </>
   );
 }
 
