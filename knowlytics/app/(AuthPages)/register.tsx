@@ -38,7 +38,7 @@ export default function Register() {
     motherName: "",
     personalEmail: "",
     guardianEmail: "",
-    studentContactNo: "",
+    personalContactNo: "",
     guardianContactNo: "",
     profession: "",
     guardianProfession: "",
@@ -57,7 +57,7 @@ export default function Register() {
       case "fullName":
       case "fatherName":
       case "motherName":
-      case "studentContactNo":
+      case "personalContactNo":
       case "guardianContactNo":
       case "guardianEmail":
         if (!value.trim()) {
@@ -148,7 +148,7 @@ export default function Register() {
       case "fullName":
       case "fatherName":
       case "motherName":
-      case "studentContactNo":
+      case "personalContactNo":
       case "guardianContactNo":
       case "guardianEmail":
         return !value.trim() ? "This field is required." : "";
@@ -338,19 +338,19 @@ export default function Register() {
                   style={styles.input}
                   placeholder="Student Contact No"
                   keyboardType="phone-pad"
-                  value={formField.studentContactNo}
+                  value={formField.personalContactNo}
                   maxLength={10}
                   onChangeText={(text) => {
                     const numericText = text.replace(/[^0-9]/g, "");
                     if (numericText.length <= 10) {
-                      handleChange("studentContactNo", numericText)
+                      handleChange("personalContactNo", numericText)
                     }
                   }}
                   placeholderTextColor="#020202ff"
                 />
-                {formErrors.studentContactNo && (
+                {formErrors.personalContactNo && (
                   <Text style={{ color: "red", fontSize: 12 }}>
-                    {formErrors.studentContactNo}
+                    {formErrors.personalContactNo}
                   </Text>
                 )}
               </View>
