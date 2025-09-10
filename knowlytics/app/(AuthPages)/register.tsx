@@ -16,6 +16,8 @@ import {
 import { useRouter } from "expo-router";
 import { Picker } from "@react-native-picker/picker";
 import Loader from "@/commonComponents/Loader";
+import { dev_Auth_Url } from "@/configUrl";
+import ApiMethods from "@/ApiMethods/ApiMethos";
 
 export default function Register() {
   const router = useRouter();
@@ -113,7 +115,7 @@ export default function Register() {
     validateField(key, value);
   };
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     const fieldsToValidate = Object.keys(formField);
     const newErrors: Record<string, string> = {};
 
@@ -136,7 +138,7 @@ export default function Register() {
     } else {
       setLoader(true);
       alert("Registration successful!");
-      console.log("formData:", formField);
+      const response = await ApiMethods.post(`${dev_Auth_Url}/v1/register`,formField)
       setTimeout(() => {
         setLoader(false);
       }, 1000);
@@ -343,7 +345,7 @@ export default function Register() {
                   onChangeText={(text) => {
                     const numericText = text.replace(/[^0-9]/g, "");
                     if (numericText.length <= 10) {
-                      handleChange("personalContactNo", numericText)
+                      handleChange("personalContactNo", numericText);
                     }
                   }}
                   placeholderTextColor="#020202ff"
@@ -371,7 +373,7 @@ export default function Register() {
                   placeholder="Guardian Contact No"
                   keyboardType="phone-pad"
                   value={formField.guardianContactNo}
-                  maxLength={10} 
+                  maxLength={10}
                   onChangeText={(text) => {
                     const numericText = text.replace(/[^0-9]/g, "");
                     if (numericText.length <= 10) {

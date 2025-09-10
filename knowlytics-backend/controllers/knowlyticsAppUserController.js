@@ -1,9 +1,17 @@
-const KnowlyticsAppUser = require("../models/KnowlyticsAppUser");
+// const KnowlyticsAppUser = require("../models/KnowlyticsAppUser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const KnowlyticsAppUser = require("../models/AppUser");
+
+// Testing api
+exports.testApi = async (req, res) => {
+  return res
+    .status(200)
+    .json({ msg: "Knowlytics app Api running successfully" });
+};
 
 // Register Knowlytics App User
-exports.registerUser = async (req, res) => {
+exports.registerKnowlyticsAppUser = async (req, res) => {
   const {
     fullName,
     fatherName,
@@ -17,15 +25,19 @@ exports.registerUser = async (req, res) => {
     standardOfStudent,
     password,
   } = req.body;
-
+  console.log("29", req.body);
   try {
     const personaluser = await KnowlyticsAppUser.findOne({ personalEmail });
     if (personaluser) {
       return res.status(400).json({ msg: "Personal email already registered" });
     }
-    const personalContact = await KnowlyticsAppUser.findOne({ personalContactNo });
+    const personalContact = await KnowlyticsAppUser.findOne({
+      personalContactNo,
+    });
     if (personalContact) {
-      return res.status(400).json({ msg: "Personal contact number already registered" });
+      return res
+        .status(400)
+        .json({ msg: "Personal contact number already registered" });
     }
 
     const salt = await bcrypt.genSalt(10);
