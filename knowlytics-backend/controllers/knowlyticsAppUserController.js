@@ -1,4 +1,3 @@
-// const KnowlyticsAppUser = require("../models/KnowlyticsAppUser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const KnowlyticsAppUser = require("../models/AppUser");
@@ -56,6 +55,7 @@ exports.registerKnowlyticsAppUser = async (req, res) => {
       standardOfStudent,
       password: hashedPassword,
     });
+
 
     await user.save();
 

@@ -139,9 +139,11 @@ export default function Register() {
       setLoader(true);
       alert("Registration successful!");
       const response = await ApiMethods.post(`${dev_Auth_Url}/v1/register`,formField)
-      setTimeout(() => {
-        setLoader(false);
-      }, 1000);
+      if(response){
+        debugger;
+        console.log("143",response)
+      }
+     setLoader(false);
     }
   };
 
