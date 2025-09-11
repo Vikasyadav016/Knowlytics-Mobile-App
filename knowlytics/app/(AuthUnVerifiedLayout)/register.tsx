@@ -18,6 +18,7 @@ import { Picker } from "@react-native-picker/picker";
 import Loader from "@/commonComponents/Loader";
 import { dev_Auth_Url } from "@/configUrl";
 import ApiMethods from "@/ApiMethods/ApiMethos";
+import DynamicModal from "@/commonComponents/PopUpModels";
 
 export default function Register() {
   const router = useRouter();
@@ -33,7 +34,7 @@ export default function Register() {
 
   const isLargeScreen = screenWidth >= 600;
   const cardWidth = Math.min(screenWidth * 0.9, 800);
-
+  const [visible, setVisible] = useState(false);
   const [formField, setFormField] = useState<any>({
     fullName: "",
     fatherName: "",
@@ -50,6 +51,7 @@ export default function Register() {
   });
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [acceptTerms, setAcceptTerms] = useState(false);
+  const [respnseMsg, setResponseMsg] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loader, setLoader] = useState(false);
 
@@ -137,12 +139,20 @@ export default function Register() {
       return;
     } else {
       setLoader(true);
-      const response = await ApiMethods.post(`${dev_Auth_Url}/v1/register`,formField)
-      if(response){
-        debugger;
-        console.log("143",response)
+      const response = await ApiMethods.post(
+        `${dev_Auth_Url}/v1/register`,
+        formField
+      );
+      if (response?.status === 200) {
+        setResponseMsg(response?.msgScs)
+        setLoader(false);
+        setVisible(true);
+      } else {
+         setResponseMsg(response?.msgeErr)
+        setLoader(false);
+        setVisible(true);
       }
-     setLoader(false);
+      setLoader(false);
     }
   };
 
@@ -561,6 +571,16 @@ export default function Register() {
             </View>
           </View>
         </ScrollView>
+
+        <DynamicModal
+          visible={visible}
+          onClose={() => setVisible(false)}
+          title={''}
+          message={respnseMsg}
+          position="center"
+          width="95%"
+          height={250}
+        />
       </KeyboardAvoidingView>
     </>
   );

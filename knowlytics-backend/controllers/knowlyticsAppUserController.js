@@ -28,7 +28,7 @@ exports.registerKnowlyticsAppUser = async (req, res) => {
   try {
     const personaluser = await KnowlyticsAppUser.findOne({ personalEmail });
     if (personaluser) {
-      return res.status(400).json({ msg: "Personal email already registered" });
+      return res.status(400).json({ msgeErr: "Personal email already registered" });
     }
     const personalContact = await KnowlyticsAppUser.findOne({
       personalContactNo,
@@ -36,7 +36,7 @@ exports.registerKnowlyticsAppUser = async (req, res) => {
     if (personalContact) {
       return res
         .status(400)
-        .json({ msg: "Personal contact number already registered" });
+        .json({ msgeErr: "Personal contact number already registered" });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -56,7 +56,6 @@ exports.registerKnowlyticsAppUser = async (req, res) => {
       password: hashedPassword,
     });
 
-
     await user.save();
 
     const payload = {
@@ -70,8 +69,20 @@ exports.registerKnowlyticsAppUser = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "7d" },
       (err, token) => {
-        if (err) throw err;
-        res.json({ token });
+        if (err) {
+          return res.status(500).json({
+            status: 500,
+            token: null,
+            msgeErr: "Fail to register user",
+            error: err.message,
+          });
+        }
+
+        return res.status(200).json({
+          status: 200,
+          token,
+          msgScs: "Registration successful",
+        });
       }
     );
   } catch (error) {
