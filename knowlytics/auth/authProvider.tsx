@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState, ReactNode } from 'react';
 import { getToken, saveToken, deleteToken } from '../utils/tokenStorage';
 import {jwtDecode} from 'jwt-decode';
 import { Alert } from 'react-native';
+import { useRouter } from 'expo-router';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -18,6 +19,7 @@ export const AuthContext = createContext<AuthContextType>({
 });
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const router = useRouter();
   const [token, setToken] = useState<string | null>(null);
   const [userRole, setUserRole] = useState<string | null>(null);
 
@@ -34,10 +36,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const login = async (newToken: string) => {
+    debugger
     await saveToken(newToken);
     setToken(newToken);
     const decoded: any = jwtDecode(newToken);
     setUserRole(decoded.role || null);
+    router.push('/(AuthVerifiedLayout)/VerifiedAuthMainLayout');
   };
 
   const logout = async () => {

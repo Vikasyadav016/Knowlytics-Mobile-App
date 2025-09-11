@@ -1,5 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -19,8 +19,10 @@ import Loader from "@/commonComponents/Loader";
 import { dev_Auth_Url } from "@/configUrl";
 import ApiMethods from "@/ApiMethods/ApiMethos";
 import DynamicModal from "@/commonComponents/PopUpModels";
+import { AuthContext } from "@/auth/authProvider";
 
 export default function Register() {
+  const { login, userRole } = useContext(AuthContext);
   const router = useRouter();
   const [screenWidth, setScreenWidth] = useState(
     Dimensions.get("window").width
@@ -51,7 +53,7 @@ export default function Register() {
   });
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [acceptTerms, setAcceptTerms] = useState(false);
-  const [respnseMsg, setResponseMsg] = useState('');
+  const [respnseMsg, setResponseMsg] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loader, setLoader] = useState(false);
 
@@ -139,20 +141,29 @@ export default function Register() {
       return;
     } else {
       setLoader(true);
-      const response = await ApiMethods.post(
-        `${dev_Auth_Url}/v1/register`,
-        formField
-      );
-      if (response?.status === 200) {
-        setResponseMsg(response?.msgScs)
-        setLoader(false);
-        setVisible(true);
-      } else {
-         setResponseMsg(response?.msgeErr)
+      try {
+        const response = await ApiMethods.post(
+          `${dev_Auth_Url}/v1/register`,
+          formField
+        );
+        debugger;
+
+        if (response?.status === 200) {
+          setResponseMsg(response?.data?.msgScs || "Registration successful");
+          setVisible(true);
+          setTimeout(async () => {
+            setVisible(false);
+            await login(response.data.token);
+          }, 3000);
+        } else {
+          setResponseMsg(response?.data?.msgeErr || "An error occurred");
+        }
+      } catch (error) {
+        setResponseMsg("Network error. Please try again.");
+      } finally {
         setLoader(false);
         setVisible(true);
       }
-      setLoader(false);
     }
   };
 
@@ -575,11 +586,11 @@ export default function Register() {
         <DynamicModal
           visible={visible}
           onClose={() => setVisible(false)}
-          title={''}
+          title={""}
           message={respnseMsg}
           position="center"
           width="95%"
-          height={250}
+          height={150}
         />
       </KeyboardAvoidingView>
     </>
