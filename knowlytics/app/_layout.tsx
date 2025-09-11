@@ -5,6 +5,30 @@ import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import React, { useContext } from 'react';
+import { AuthContext, AuthProvider } from '@/auth/authProvider';
+
+function RootStack() {
+  const { isAuthenticated } = useContext(AuthContext);
+  console.log("isAuthenticated", isAuthenticated);
+
+  return (
+    <Stack
+      screenOptions={{
+        headerShown: false, // <-- Hide header globally here
+      }}
+    >
+      {isAuthenticated ? (
+        // Authenticated users see the main tabs
+        <Stack.Screen name="(tabs)" />
+      ) : (
+        // Unauthenticated users see auth screens
+        <Stack.Screen name="(AuthPages)/login" />
+      )}
+      <Stack.Screen name="+not-found" />
+    </Stack>
+  );
+}
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -13,17 +37,16 @@ export default function RootLayout() {
   });
 
   if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
+    return null; // wait for fonts to load
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <RootStack />
+        <StatusBar style="auto" />
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
+

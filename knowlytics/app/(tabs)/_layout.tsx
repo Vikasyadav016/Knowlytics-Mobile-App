@@ -1,20 +1,19 @@
 // import { Tabs } from 'expo-router';
-import React from "react";
-// import { Platform } from 'react-native';
-
-// import { HapticTab } from '@/components/HapticTab';
-// import { IconSymbol } from '@/components/ui/IconSymbol';
-// import TabBarBackground from '@/components/ui/TabBarBackground';
-// import { Colors } from '@/constants/Colors';
-// import { useColorScheme } from '@/hooks/useColorScheme';
-import LandingPage from "./landingpage";
+import { AuthContext } from "@/auth/authProvider";
+import AuthUnVerifiedMainLayout from "@/AuthUnVerifiedLayout/AuthUnVerifiedMainLayout";
+import VerifiedAuthMainLayout from "@/AuthVerifiedLayout/VerifiedAuthMainLayout";
+import React, { useContext } from "react";
 
 export default function TabLayout() {
-  // const colorScheme = useColorScheme();
+  const { isAuthenticated } = useContext(AuthContext);
 
   return (
     <>
-      <LandingPage />
+      {isAuthenticated ? (
+        <VerifiedAuthMainLayout />
+      ) : (
+        <AuthUnVerifiedMainLayout />
+      )}
     </>
     // <Tabs
     //   screenOptions={{

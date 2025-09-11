@@ -19,7 +19,7 @@ import Loader from "@/commonComponents/Loader";
 import { dev_Auth_Url } from "@/configUrl";
 import ApiMethods from "@/ApiMethods/ApiMethos";
 
-export default function Register() {
+export default function NewUserRegistrationForm() {
   const router = useRouter();
   const [screenWidth, setScreenWidth] = useState(
     Dimensions.get("window").width
