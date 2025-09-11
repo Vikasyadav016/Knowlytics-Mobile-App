@@ -62,3 +62,28 @@ export const AdminPanelIcon = ({ color = '#444' }: { color?: string }) => (
     <Path d="M9 9h6v6H9z" fill={color} />
   </Svg>
 );
+
+
+export const BackIcon = ({ color = '#444' }: { color?: string }) => (
+  <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
+    <Path
+      d="M15 18l-6-6 6-6"
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const NextIcon = ({ color = '#444' }: { color?: string }) => (
+  <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
+    <Path
+      d="M9 6l6 6-6 6"
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);

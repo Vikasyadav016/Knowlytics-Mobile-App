@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import { BackIcon } from "@/commonComponents/SvgIcons";
 
 export default function MainAuthPage() {
   const router = useRouter();
@@ -45,14 +46,14 @@ export default function MainAuthPage() {
       />
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()}>
-          <Text style={styles.backText}>Back</Text>
+          <Text style={styles.backText}><BackIcon color="#fff" />Back</Text>
         </TouchableOpacity>
       </View>
 
       <AnimatedCard
         label="Login"
         animatedValue={scaleLogin}
-        onPress={() => router.push("/(AuthPages)/login")}
+        onPress={() => router.push("/(AuthUnVerifiedLayout)/login")}
         onPressIn={() => handlePressIn(scaleLogin)}
         onPressOut={() => handlePressOut(scaleLogin)}
       />
@@ -60,7 +61,7 @@ export default function MainAuthPage() {
       <AnimatedCard
         label="Register"
         animatedValue={scaleRegister}
-        onPress={() => router.push("/(AuthPages)/register")}
+        onPress={() => router.push("/(AuthUnVerifiedLayout)/register")}
         onPressIn={() => handlePressIn(scaleRegister)}
         onPressOut={() => handlePressOut(scaleRegister)}
       />

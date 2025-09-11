@@ -36,7 +36,7 @@ export default function LandingPage() {
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push("/(AuthPages)/MainAuthPage")}
+          onPress={() => router.push("/(AuthUnVerifiedLayout)/MainAuthPage")}
           activeOpacity={0.7}
         >
           <Text style={styles.buttonText}>Start</Text>
