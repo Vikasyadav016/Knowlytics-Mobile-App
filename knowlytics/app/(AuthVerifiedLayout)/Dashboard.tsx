@@ -3,6 +3,7 @@ import {
   BackArrowIcon,
   HelpIcon,
   HomeIcon,
+  LogoutIcon,
   ProfileIcon,
   SettingsIcon,
 } from "@/commonComponents/SvgIcons";
@@ -26,6 +27,7 @@ const menuItems = [
   { key: "settings", label: "Settings" },
   { key: "about", label: "Info" },
   { key: "help", label: "Help" },
+  { key: "logout", label: "Logout" },
 ];
 
 const iconComponents: any = {
@@ -35,6 +37,7 @@ const iconComponents: any = {
   settings: SettingsIcon,
   about: AboutIcon,
   help: HelpIcon,
+  logout: LogoutIcon
 };
 
 function Home() {
