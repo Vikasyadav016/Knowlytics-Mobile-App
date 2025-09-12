@@ -1,5 +1,5 @@
 import { useAuth } from '@/auth/useAuth';
-import { OverviewIcon, SettingsIcon, StatsIcon } from '@/commonComponents/SvgIcons';
+import { HorizontalMenuIcon, OverviewIcon, SettingsIcon, StatsIcon } from '@/commonComponents/SvgIcons';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
@@ -13,15 +13,16 @@ const ICONS_MAP: Record<string, React.FC<{ color: string }>> = {
   Overview: OverviewIcon,
   Stats: StatsIcon,
   Settings: SettingsIcon,
+  Dashboard: HorizontalMenuIcon
 };
 
 export default function TopTabBar({ activeTab, onTabPress }: TopTabBarProps) {
   const { userRole } = useAuth();
 
   const tabsForRole: Record<string, string[]> = {
-    admin: ['Overview', 'Stats', 'Settings'],
-    user: ['Overview', 'Stats'],
-    guest: ['Overview', 'Stats', 'Settings'],
+    admin: ['Dashboard','Overview', 'Stats', 'Settings'],
+    user: ['Dashboard','Overview', 'Stats'],
+    guest: ['Dashboard','Overview', 'Stats', 'Settings'],
   };
 
   const tabs = tabsForRole[userRole ?? 'guest'] ?? ['Overview'];

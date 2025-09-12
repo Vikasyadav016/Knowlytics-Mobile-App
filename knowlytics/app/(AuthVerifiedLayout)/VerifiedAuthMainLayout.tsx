@@ -5,6 +5,7 @@ import Overview from "@/TabBarTabsPages/Overview";
 import Stats from "@/TabBarTabsPages/Stats";
 import TopTabBar from "@/AuthVerifiedLayout/TopTabBar.tsx/Tobtabbar";
 import BottomTabBar from "@/AuthVerifiedLayout/BottomTabBar.tsx/BottomTabbar";
+import { useRouter } from "expo-router";
 
 const styles = StyleSheet.create({
   background: {
@@ -26,20 +27,35 @@ const CONTENT_COMPONENTS: Record<string, React.ComponentType> = {
 };
 
 export default function VerifiedAuthMainLayout() {
+    const router = useRouter();
   const [activeTab, setActiveTab] = React.useState<{
     name: string;
     bar: "top" | "bottom";
   }>({
-    name: "Overview",
+    name: "Dashboard",
     bar: "top",
   });
 
-  const onTopTabPress = (tabName: string) =>
-    setActiveTab({ name: tabName, bar: "top" });
-  const onBottomTabPress = (tabName: string) =>
-    setActiveTab({ name: tabName, bar: "bottom" });
+
+  const onTopTabPress = (tabName: string) => {
+    if (tabName === "Dashboard") {
+      router.push("/(AuthVerifiedLayout)/Dashboard");
+    } else {
+      setActiveTab({ name: tabName, bar: "top" });
+    }
+  };
+
+  const onBottomTabPress = (tabName: string) => {
+    if (tabName === "Dashboard") {
+     router.push("/(AuthVerifiedLayout)/Dashboard");
+    } else {
+      setActiveTab({ name: tabName, bar: "bottom" });
+    }
+  };
 
   const ActiveComponent = CONTENT_COMPONENTS[activeTab.name];
+  console.log('ActiveComponent:', ActiveComponent, activeTab.name);
+
 
   return (
     <LinearGradient
@@ -53,7 +69,9 @@ export default function VerifiedAuthMainLayout() {
           activeTab={activeTab.bar === "top" ? activeTab.name : ""}
           onTabPress={onTopTabPress}
         />
-        <View style={styles.content}>{ActiveComponent ? <ActiveComponent /> : null}</View>
+        <View style={styles.content}>
+          {ActiveComponent ? <ActiveComponent /> : null}
+        </View>
         <BottomTabBar
           activeTab={activeTab.bar === "bottom" ? activeTab.name : ""}
           onTabPress={onBottomTabPress}
@@ -62,4 +80,3 @@ export default function VerifiedAuthMainLayout() {
     </LinearGradient>
   );
 }
-
