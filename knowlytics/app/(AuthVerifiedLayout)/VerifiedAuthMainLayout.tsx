@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+// import { LinearGradient } from "expo-linear-gradient";
 import Overview from "@/TabBarTabsPages/Overview";
 import Stats from "@/TabBarTabsPages/Stats";
 import TopTabBar from "@/AuthVerifiedLayout/TopTabBar.tsx/Tobtabbar";
@@ -45,25 +45,27 @@ export default function VerifiedAuthMainLayout() {
     }
   };
 
-  const onBottomTabPress = (tabName: string) => {
-    if (tabName === "Dashboard") {
-     router.push("/(AuthVerifiedLayout)/Dashboard");
-    } else {
-      setActiveTab({ name: tabName, bar: "bottom" });
-    }
-  };
+const onBottomTabPress = (tabName: string) => {
+  if (tabName === "Dashboard") {
+    router.push("/(AuthVerifiedLayout)/Dashboard");
+  } else if (tabName === "ExamDashboard") {
+    router.push("/(AuthVerifiedLayout)/StudentOptions/ExamDashboard");
+  } else {
+    setActiveTab({ name: tabName, bar: "bottom" });
+  }
+};
+
 
   const ActiveComponent = CONTENT_COMPONENTS[activeTab.name];
-  console.log('ActiveComponent:', ActiveComponent, activeTab.name);
 
 
   return (
-    <LinearGradient
-      colors={["#a8310aff", "#105a06ff"]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-      style={styles.background}
-    >
+    // <LinearGradient
+    //   colors={["#a8310aff", "#105a06ff"]}
+    //   start={{ x: 0, y: 0 }}
+    //   end={{ x: 1, y: 1 }}
+    //   style={styles.background}
+    // >
       <View style={styles.container}>
         <TopTabBar
           activeTab={activeTab.bar === "top" ? activeTab.name : ""}
@@ -77,6 +79,6 @@ export default function VerifiedAuthMainLayout() {
           onTabPress={onBottomTabPress}
         />
       </View>
-    </LinearGradient>
+    // </LinearGradient>
   );
 }

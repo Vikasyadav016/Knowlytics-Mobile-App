@@ -1,5 +1,5 @@
 import React from "react";
-import Svg, { Path, Circle, Rect, Line } from "react-native-svg";
+import Svg, { Path, Circle, Rect, Line, Polyline } from "react-native-svg";
 
 export const OverviewIcon = ({ color = "#000" }: { color?: string }) => (
   <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
@@ -187,3 +187,163 @@ export const LogoutIcon = ({ color = "#000" }: { color?: string }) => (
     />
   </Svg>
 );
+
+export const ExamDashboardIcon = ({ color = "#000" }: { color?: string }) => (
+  <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
+    <Rect
+      x={3}
+      y={4}
+      width={18}
+      height={16}
+      rx={2}
+      ry={2}
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Line
+      x1={16}
+      y1={2}
+      x2={16}
+      y2={6}
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Line
+      x1={8}
+      y1={2}
+      x2={8}
+      y2={6}
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Line
+      x1={3}
+      y1={10}
+      x2={21}
+      y2={10}
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const TakingExamsIcon = ({ color = "#000" }: { color?: string }) => (
+  <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
+    <Path
+      d="M12 20h9"
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Path
+      d="M12 4h9"
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Path
+      d="M8 16v-8a2 2 0 0 1 2-2h4"
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Rect
+      x={2}
+      y={8}
+      width={8}
+      height={8}
+      rx={1}
+      ry={1}
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Path
+      d="M7 12h2"
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const ResultsFeedbackIcon = ({ color = "#000" }: { color?: string }) => (
+  <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
+    <Circle
+      cx={12}
+      cy={12}
+      r={10}
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Polyline
+      points="12 6 12 12 16 14"
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const ResultsIcon = ({ color = "#000" }: { color?: string }) => (
+  <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
+    <Circle
+      cx={12}
+      cy={12}
+      r={10}
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Polyline
+      points="8 12 11 15 16 10"
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const FeedbackIcon = ({ color = "#000" }: { color?: string }) => (
+  <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
+    <Rect
+      x={2}
+      y={6}
+      width={20}
+      height={12}
+      rx={2}
+      ry={2}
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Path
+      d="M8 18l-3 3v-3H2"
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+

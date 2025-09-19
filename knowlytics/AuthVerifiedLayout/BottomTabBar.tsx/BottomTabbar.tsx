@@ -2,9 +2,13 @@ import { useAuth } from "@/auth/useAuth";
 import {
   AdminPanelIcon,
   DefaultManIcon,
+  ExamDashboardIcon,
+  FeedbackIcon,
   HomeIcon,
   MessagesIcon,
   ProfileIcon,
+  ResultsIcon,
+  TakingExamsIcon,
 } from "@/commonComponents/SvgIcons";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
@@ -18,23 +22,38 @@ interface BottomTabBarProps {
 const ICONS_MAP: Record<string, React.FC<{ color: string }>> = {
   Home: HomeIcon,
   Messages: MessagesIcon,
-  Profile: ProfileIcon, 
+  Profile: ProfileIcon,
   AdminPanel: AdminPanelIcon,
+  ExamDashboard: ExamDashboardIcon,
+  TakingExams: TakingExamsIcon,
+  Results: ResultsIcon,
+  Feedback: FeedbackIcon,
+};
+
+const TAB_LABELS: Record<string, string> = {
+  Home: "Home",
+  Messages: "Messages",
+  Profile: "Profile",
+  AdminPanel: "Admin Panel",
+  ExamDashboard: "ExamHub", // <--- space added here
+  TakingExams: "Taking Exams",
+  Results: "Results",
+  Feedback: "Feedback",
 };
 
 export default function BottomTabBar({
   activeTab,
   onTabPress,
 }: BottomTabBarProps) {
-  const { userRole } = useAuth(); 
+  const { userRole } = useAuth();
   const [user] = useState<any>();
   const tabsForRole: Record<string, string[]> = {
     admin: ["Home", "Messages", "Profile", "AdminPanel"],
     user: ["Home", "Messages", "Profile"],
-    guest: ["Home", "Messages","Profile"],
+    student: ["Profile", "ExamDashboard", "TakingExams", "Results", "Feedback"],
   };
 
-  const tabs = tabsForRole[userRole ?? "guest"] ?? ["Home"];
+  const tabs = tabsForRole[userRole ?? "student"] ?? ["Home"];
 
   return (
     <LinearGradient
@@ -83,7 +102,7 @@ export default function BottomTabBar({
                   { color },
                 ]}
               >
-                {tabName}
+                {TAB_LABELS[tabName] || tabName}
               </Text>
             </Pressable>
           );

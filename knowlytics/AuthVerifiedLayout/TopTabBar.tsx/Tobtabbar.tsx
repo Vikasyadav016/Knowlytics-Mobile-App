@@ -22,10 +22,10 @@ export default function TopTabBar({ activeTab, onTabPress }: TopTabBarProps) {
   const tabsForRole: Record<string, string[]> = {
     admin: ['Dashboard','Overview', 'Stats', 'Settings'],
     user: ['Dashboard','Overview', 'Stats'],
-    guest: ['Dashboard','Overview', 'Stats', 'Settings'],
+    student: ['Dashboard','Overview', 'Stats', 'Settings'],
   };
 
-  const tabs = tabsForRole[userRole ?? 'guest'] ?? ['Overview'];
+  const tabs = tabsForRole[userRole ?? 'student'] ?? ['Overview'];
 
   return (
     <LinearGradient
