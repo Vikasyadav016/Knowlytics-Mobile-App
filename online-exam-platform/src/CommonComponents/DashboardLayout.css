@@ -1,0 +1,142 @@
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  background: #f7f9fc;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #007bff;
+  flex-shrink: 0;
+}
+
+.profile-info h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+.summary-cards {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1 1 20%;
+  padding: 1.5rem;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-width: 160px;
+  cursor: default;
+  transition: transform 0.2s ease;
+}
+
+.card:focus,
+.card:hover {
+  outline: none;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.attended {
+  background-color: #17a2b8;
+}
+
+.cleared {
+  background-color: #28a745;
+}
+
+.pending {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.next-exam {
+  background-color: #6f42c1;
+}
+
+.card h3 {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.card p {
+  font-size: 2rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+.graphs-section h3 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.graphs-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.chart-placeholder {
+  flex: 1 1 45%;
+  min-width: 300px;
+  height: 250px;
+  background: #e9ecef;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  font-style: italic;
+  font-size: 1rem;
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+  .summary-cards {
+    flex-direction: column;
+  }
+  .card {
+    width: 100%;
+    flex: none;
+    margin-bottom: 1rem;
+  }
+  .graphs-container {
+    flex-direction: column;
+  }
+  .chart-placeholder {
+    width: 100%;
+    min-width: auto;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  .avatar {
+    margin-bottom: 1rem;
+  }
+}
