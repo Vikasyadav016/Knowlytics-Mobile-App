@@ -3,7 +3,6 @@ import "../AuthStyling/Registration.css";
 import { AuthContext } from "../../../Auth/AuthProvider";
 import NavBar from "../../../CommonComponents/NavigationBar";
 import "../../../CommonComponents/NavBar.css"
-import CommonTableDynammic from "../../../CommonComponents/Table/CommonTable";
 
 const DEFAULT_USER_ICON =
   "https://cdn-icons-png.flaticon.com/512/847/847969.png";
@@ -237,21 +236,6 @@ const navItems = [
   { label: 'Home', route: '/' },
 ];
 
-
-const columns = [
-  { accessorKey: "id", header: "ID" },
-  { accessorKey: "firstName", header: "First Name" },
-  { accessorKey: "lastName", header: "Last Name" },
-  { accessorKey: "age", header: "Age" },
-];
-
-// Generate more data for testing pagination
-const data = Array.from({ length: 123 }).map((_, i) => ({
-  id: i + 1,
-  firstName: `First${i + 1}`,
-  lastName: `Last${i + 1}`,
-  age: 20 + (i % 30),
-}));
 
   return (
     <>
@@ -529,10 +513,6 @@ const data = Array.from({ length: 123 }).map((_, i) => ({
           Register
         </button>
       </form>
-    </div>
-
-     <div className="p-8">
-      <CommonTableDynammic columns={columns} data={data} enableSorting={true} />
     </div>
     </>
   );

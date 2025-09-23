@@ -12,6 +12,7 @@ import UnauthorizedLayout from "./AuthUnVerifiedLayout/UnAuthorizedLayout";
 import ProtectedRoute from "./CommonComponents/ProtectedRoutes";
 import UserLayout from "./AuthVerifiedLayout/UserLayout";
 import UserDashboard from "./AuthVerifiedLayout/UserDashboard";
+import LoginPage from "./Pages/AuthPages/AuthMainPage/Login";
 
 function App() {
   return (
@@ -20,17 +21,18 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
 
-          {/* Protected Routes */}
           <Route element={<ProtectedRoute />}>
             <Route path="/user" element={<UserLayout />}>
               <Route index element={<UserDashboard />} />
             </Route>
           </Route>
 
-          <Route path="*" element={<NotFound />} />
           <Route path="/unauthorized" element={<UnauthorizedLayout />}>
-            <Route path="register" index element={<Registration />} />
+            <Route index element={<LoginPage />} />
+            <Route path="register" element={<Registration />} />
           </Route>
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </ErrorBoundary>
