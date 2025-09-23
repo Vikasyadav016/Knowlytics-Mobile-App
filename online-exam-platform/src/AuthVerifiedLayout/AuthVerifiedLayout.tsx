@@ -14,6 +14,7 @@ interface AuthVerifiedLayoutProps {
   notificationCount: number;
   onLogout: () => void;
   sideMenuItems: { path:string; label: string; icon?: React.ReactNode; onClick?: () => void }[];
+  
 }
 
 const AuthVerifiedLayout: React.FC<AuthVerifiedLayoutProps> = ({
@@ -26,6 +27,7 @@ const AuthVerifiedLayout: React.FC<AuthVerifiedLayoutProps> = ({
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate()
+  const [expandedMenus, setExpandedMenus] = useState<{ [key: number]: boolean }>({});
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -52,11 +54,17 @@ const AuthVerifiedLayout: React.FC<AuthVerifiedLayoutProps> = ({
       setSidebarOpen(false);
     }
   };
+  const toggleSubMenu = (index: number) => {
+  setExpandedMenus((prev) => ({
+    ...prev,
+    [index]: !prev[index],
+  }));
+};
 
   return (
     <div className="layout">
       <aside className={`sidebar ${sidebarOpen ? "sidebar-open" : ""}`}>
-        <nav className="side-menu">
+        {/* <nav className="side-menu">
           {sideMenuItems.map(({ label,path, icon, onClick }, i) => (
             <button
               key={i}
@@ -68,7 +76,54 @@ const AuthVerifiedLayout: React.FC<AuthVerifiedLayoutProps> = ({
               {label}
             </button>
           ))}
-        </nav>
+        </nav> */}
+        <nav className="side-menu">
+  {sideMenuItems.map(({ label, path, icon, onClick, subMenu }:any, i) => {
+    const hasSubMenu = subMenu && subMenu.length > 0;
+    const isExpanded = expandedMenus[i];
+
+    return (
+      <div key={i}>
+        <button
+          onClick={() => {
+            if (hasSubMenu) {
+              toggleSubMenu(i);
+            } else {
+              handleMenuItemClick(path || "", onClick);
+            }
+          }}
+          className="side-menu-item"
+          type="button"
+        >
+          {icon && <span className="side-menu-icon">{icon}</span>}
+          <span>{label}</span>
+          {hasSubMenu && (
+            <span className={`submenu-arrow ${isExpanded ? "expanded" : ""}`}>
+              &gt;
+            </span>
+          )}
+        </button>
+
+        {hasSubMenu && isExpanded && (
+          <div className="submenu">
+            {subMenu!.map(({ label, path, icon, onClick }:any, j:any) => (
+              <button
+                key={j}
+                onClick={() => handleMenuItemClick(path || "", onClick)}
+                className="side-menu-subitem"
+                type="button"
+              >
+                {icon && <span className="side-menu-icon">{icon}</span>}
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  })}
+</nav>
+
       </aside>
       <div className="main-content">
         <header className="topbar">

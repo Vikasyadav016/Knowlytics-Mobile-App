@@ -348,3 +348,27 @@ body, html, #root {
   padding: 1rem;
   background-color: #f3f4f6;
 }
+
+.submenu {
+  padding-left: 1rem;
+}
+
+.submenu-arrow {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.submenu-arrow.expanded {
+  transform: rotate(90deg);
+}
+
+.side-menu-subitem {
+  display: block;
+  width: 100%;
+  padding-left: 1.5rem;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+}

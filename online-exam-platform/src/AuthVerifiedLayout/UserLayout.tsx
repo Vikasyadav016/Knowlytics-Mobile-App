@@ -7,9 +7,9 @@ const user = {
 };
 
 const sideMenuItems = [
-  { label: "Dashboard", path: "/user/dashboard" },
-  { label: "Profile", path: "/user/dashboard" },
-  { label: "Settings", path: "/user/dashboard" },
+  { label: "Dashboard", path: "dashboard" },
+  { label: "Profile", path: "profile" },
+  { label: "Settings", path: "settings" },
 ];
 
 function UserLayout() {

@@ -10,7 +10,7 @@ import Registration from "./Pages/AuthPages/AuthMainPage/Registration";
 import NotFound from "./ErrorBoundaries/NotFound";
 import UnauthorizedLayout from "./AuthUnVerifiedLayout/UnAuthorizedLayout";
 import ProtectedRoute from "./CommonComponents/ProtectedRoutes";
-import UserLayout from "./AuthVerifiedLayout/Test";
+import UserLayout from "./AuthVerifiedLayout/UserLayout";
 import UserDashboard from "./AuthVerifiedLayout/UserDashboard";
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
           {/* Protected Routes */}
           <Route element={<ProtectedRoute />}>
             <Route path="/user" element={<UserLayout />}>
-              <Route path="dashboard" index element={<UserDashboard />} />
+              <Route index element={<UserDashboard />} />
             </Route>
           </Route>
 

@@ -13,6 +13,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import Modal from "./Modal";
+import CommonTableDynammic from "./Table/CommonTable";
 
 interface UserProfile {
   name: string;
@@ -54,12 +55,29 @@ const DashboardPageLayout: React.FC<DashboardPageProps> = ({
   ];
 
   const [isModalOpen, setModalOpen] = useState(false);
- const [cardtitle, setTitle] = useState('');
+  const [cardtitle, setTitle] = useState("");
 
-  const handleShowCardDetails = (details:string) => {
+  const handleShowCardDetails = (details: string) => {
     setModalOpen(true);
-    setTitle(details)
+    setTitle(details);
   };
+
+  const columns = [
+    { accessorKey: "id", header: "Exam Id" },
+    { accessorKey: "examName", header: "Exam Name" },
+    { accessorKey: "dateOfExam", header: "Exam Date" },
+    { accessorKey: "status", header: "Status" },
+  ];
+
+  // Generate more data for testing pagination
+  const data = [
+    {
+      id: "9898",
+      examName: "CBT Online Test",
+      dateOfExam: "12-09-2023",
+      status: "Completed",
+    },
+  ];
   return (
     <>
       <div
@@ -91,7 +109,7 @@ const DashboardPageLayout: React.FC<DashboardPageProps> = ({
               key={label}
               className="card"
               tabIndex={0}
-              onClick={()=>handleShowCardDetails(label)}
+              onClick={() => handleShowCardDetails(label)}
               style={{
                 background: color,
                 color: "#fff",
@@ -186,6 +204,11 @@ const DashboardPageLayout: React.FC<DashboardPageProps> = ({
         onClose={() => setModalOpen(false)}
         title={cardtitle}
       >
+        <CommonTableDynammic
+          columns={columns}
+          data={data}
+          enableSorting={true}
+        />
         <div
           style={{
             display: "grid",
