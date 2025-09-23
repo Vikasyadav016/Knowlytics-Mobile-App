@@ -21,9 +21,9 @@ function isTokenExpired(token:string) {
 const ProtectedRoute = () => {
   const token = localStorage.getItem('session_token');
 
-  // if (!token || isTokenExpired(token)) {
-  //   return <Navigate to="/" replace />;
-  // }
+  if (!token || isTokenExpired(token)) {
+    return <Navigate to="/" replace />;
+  }
 
   return <Outlet />;
 };
