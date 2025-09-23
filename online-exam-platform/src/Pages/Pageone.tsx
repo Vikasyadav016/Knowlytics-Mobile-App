@@ -1,5 +1,6 @@
 import React from 'react';
 import './Landingpage.css';
+import Registration from './AuthPages/AuthMainPage/Registration';
 
 const LandingPage: React.FC = () => {
   return (
@@ -48,7 +49,7 @@ const LandingPage: React.FC = () => {
       <section id="how-it-works" className="how-it-works-section">
         <h2>How It Works</h2>
         <ol>
-          <li>Create your exam with our simple tools.</li>
+          <li>Create your exam with our simple tools.<Registration /></li>
           <li>Invite candidates via email or link.</li>
           <li>Monitor exams with live proctoring features.</li>
           <li>Get instant results and detailed reports.</li>

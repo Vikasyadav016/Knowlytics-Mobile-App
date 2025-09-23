@@ -1,0 +1,31 @@
+
+.my-navbar {
+  background-color: #0077ff;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.my-navbar ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem;
+}
+
+.my-navbar a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 0;
+  transition: color 0.2s ease-in-out;
+}
+
+.my-navbar a:hover {
+  color: #3498db;
+}
+
+.my-active-link {
+  color: #3498db;
+  border-bottom: 2px solid #3498db;
+}

@@ -1,27 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import ErrorBoundary from './ErrorBoundaries/ErrorBoundaries';
 import LandingPage from './Pages/Pageone';
+import Registration from './Pages/AuthPages/AuthMainPage/Registration';
+import NotFound from './ErrorBoundaries/NotFound';
+import UnauthorizedLayout from './AuthUnVerifiedLayout/UnAuthorizedLayout';
 
 function App() {
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.tsx</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-    <LandingPage />
+    <ErrorBoundary>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          {/* <Route path="/register" element={<Registration />} /> */}
+          <Route path="*" element={<NotFound />} />
+           <Route path="/unauthorized" element={<UnauthorizedLayout />} >
+           <Route path='register' index element={<Registration />} />
+           </Route>
+        </Routes>
+      </Router>
+    </ErrorBoundary>
   );
 }
 
