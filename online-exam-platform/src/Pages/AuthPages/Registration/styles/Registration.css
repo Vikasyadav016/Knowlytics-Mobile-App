@@ -1,0 +1,211 @@
+.registration-bg {
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   /* padding: 20px;  */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.registration-container {
+  display: flex;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+  /* min-height: 500px; */
+  position: relative;
+}
+
+.step-card {
+  background: #fafafa;
+  padding: 30px 20px;
+  width: 360px;
+  box-shadow: inset 4px 0 0 #764ba2;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.step-card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.step-card::-webkit-scrollbar-thumb {
+  background: #764ba2;
+  border-radius: 10px;
+}
+
+.form-card {
+  flex-grow: 1;
+  padding: 40px 30px;
+  background: #fff;
+  overflow-y: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 1px solid #eee;
+  position: relative;
+}
+
+/* StepIndicator styles */
+.step-indicator {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.step-indicator li {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  padding-left: 38px;
+  margin-bottom: 28px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #666;
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+.step-indicator li:last-child {
+  margin-bottom: 0;
+}
+
+
+.step-indicator li::before {
+  content: attr(data-step);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ccc;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+
+.step-indicator li.completed::before {
+  content: '✔';
+  background: #764ba2;
+  color: white;
+  font-size: 1.2rem;
+  line-height: 30px;
+}
+
+
+.step-indicator li.active {
+  color: #764ba2;
+  font-weight: 700;
+}
+.step-indicator li.active::before {
+  background: #764ba2;
+  color: white;
+  box-shadow: 0 0 10px #764ba2;
+}
+
+.step-indicator li:hover:not(.active):not(.completed) {
+  color: #5a3a8c;
+}
+
+.form-buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+button {
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.save-btn {
+  background-color: #eee;
+  color: #555;
+}
+
+button.save-btn:hover {
+  background-color: #ddd;
+}
+
+button.next-btn {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(118, 75, 162, 0.6);
+}
+
+button.next-btn:hover {
+  background: linear-gradient(45deg, #5a6edb, #663c99);
+}
+
+/* Responsive - Mobile */
+/* On mobile, steps are horizontal on top */
+@media (max-width: 768px) {
+  .registration-container {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .step-card {
+    width: 100%;
+    height: auto;
+    padding: 15px 10px;
+    box-shadow: none;
+    border-bottom: 2px solid #764ba2;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 15px;
+  }
+
+  .step-indicator {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .step-indicator li {
+    padding-left: 0;
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    position: relative;
+    flex: 1 0 auto;
+    justify-content: center;
+  }
+  .step-indicator li::before {
+    left: 50%;
+    top: auto;
+    bottom: -40px;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+    line-height: 28px;
+  }
+
+  .form-card {
+    padding: 30px 20px;
+    border-left: none;
+  }
+}

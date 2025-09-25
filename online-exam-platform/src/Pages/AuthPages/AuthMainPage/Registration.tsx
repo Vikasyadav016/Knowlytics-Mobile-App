@@ -236,6 +236,46 @@ const navItems = [
   { label: 'Home', route: '/' },
 ];
 
+/*
+
+i need a registration page.
+what actually i want and how i want i am write here.
+create a component of Registration.tsx
+when we land on this page i want to fallow user the registration process.
+in left side the steps will show and on that step completion that step will ticked and colur of that step shoul dbe changed.
+and in right side according to step wise the UI will be showing to user to fiill mandatory details step by step.
+This all should be responsive.
+in desktop the step should be shown in left side of screen and the UI in right side of screen.
+and in any mobile devices screen the step will shown in above UI horizontally. and the UI will be below step indicator.
+All should be wrapped in card.
+step indicator should be in other card and UI shoul dbe in other and each step UI have two buttons in below that should be save and next.
+In registartion page background should be linear radiant of two colur.
+  on each step according to field the validation function should be there and if validation error there should be shown on below of that field.
+  Create as much possible as maintainable component based and adaptable.
+  dont make much complex.
+  All should be responsive 
+  Ui an dpage should be attratcive as user perspective looks good and feel like Something gradiant ui is infront of eye.
+  Here is the steps
+  Step-1 as Register as(role)
+  UI field will be a dropdown select role(Student, Examer, examee, Admin,etc)
+  Step-2 as Personal Details
+  UI fields on this step
+  image,name,email,contactNo,aadhaarNo,
+  Step-3 as gardian details
+  UI fields on this step
+  Father name, mother name, gardian contact, gardian aadhar, gardian email,
+  step-4 as address details
+  UI field on this step
+  State(dropdown),district(dropdown),village(text),post office(text),wardno(text),pincode(only number)
+  Step-5 Other details according to selected role.
+  step-6 Password creation
+  UI field should be as password, confirm password
+  step-7 Terms and conditions
+  UI field on this step should be
+a checkbox and content of terms and condition mentioned.
+on final step the next button should be preview button
+*/
+
 
   return (
     <>

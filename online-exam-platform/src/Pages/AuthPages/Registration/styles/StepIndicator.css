@@ -1,0 +1,134 @@
+/* StepIndicator.css */
+
+.step-indicator {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-left: 20px;
+  position: relative;
+}
+
+/* Step item container */
+.step-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  color: #555;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+/* Circle with step number or check */
+.step-number {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #ccc;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+  transition: background-color 0.4s ease;
+  z-index: 2;
+}
+
+/* Step title */
+.step-title {
+  margin-left: 18px;
+  flex-grow: 1;
+  color: inherit;
+}
+
+/* Completed step styles */
+.step-item.completed .step-number {
+  background-color: #764ba2;
+  box-shadow: 0 0 10px #764ba2aa;
+}
+
+/* Active step styles */
+.step-item.active {
+  color: #764ba2;
+  font-weight: 700;
+}
+.step-item.active .step-number {
+  background-color: #764ba2;
+  box-shadow: 0 0 12px #764ba2ff;
+}
+
+/* Connecting line between steps */
+/* We'll create a vertical line behind the steps connecting circles */
+.step-indicator::before {
+  content: '';
+  position: absolute;
+  top: 36px; /* half circle height */
+  left: 18px; /* center of circle */
+  width: 4px;
+  height: calc(100% - 36px);
+  background: linear-gradient(to bottom, #764ba2 0%, #ccc 100%);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+/* Completed part of line - we will overlay a colored line */
+/* .step-indicator::after {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: 18px;
+  width: 4px;
+  height: 0;
+  background-color: #764ba2;
+  border-radius: 2px;
+  z-index: 2;
+  transition: height 0.3s ease;
+} */
+
+.step-indicator::after {
+  height: var(--progress-line-height, 0);
+}
+
+/* Using JavaScript to set the height of ::after to show progress line */
+
+/* Mobile horizontal style */
+@media (max-width: 768px) {
+  .step-indicator {
+    flex-direction: row;
+    padding-left: 0;
+    gap: 24px;
+    overflow-x: auto;
+    position: relative;
+  }
+  .step-item {
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+  }
+  .step-title {
+    margin-left: 0;
+    margin-top: 8px;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+
+  /* Horizontal connecting line */
+  .step-indicator::before {
+    top: 18px;
+    left: 36px;
+    width: calc(100% - 36px);
+    height: 4px;
+    background: linear-gradient(to right, #764ba2 0%, #ccc 100%);
+  }
+  .step-indicator::after {
+    top: 18px;
+    left: 36px;
+    width: 0;
+    height: 4px;
+  }
+}

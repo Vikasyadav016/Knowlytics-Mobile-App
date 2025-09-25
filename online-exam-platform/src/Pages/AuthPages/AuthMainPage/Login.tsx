@@ -98,6 +98,11 @@ const LoginPage: React.FC = () => {
             >
               Login
             </button>
+            <div className="donthave-account">
+              <a href="/unauthorized/register" className="register-here-link">
+                Do not have account ?, Register here
+              </a>
+            </div>
           </form>
         </div>
       </div>

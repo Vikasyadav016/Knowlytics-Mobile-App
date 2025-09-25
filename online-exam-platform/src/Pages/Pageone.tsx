@@ -1,18 +1,35 @@
-import React from 'react';
-import './Landingpage.css';
-import Registration from './AuthPages/AuthMainPage/Registration';
+import React from "react";
+import "./Landingpage.css";
+import Registration from "./AuthPages/AuthMainPage/Registration";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage: React.FC = () => {
+  const navigate = useNavigate();
+  const handleGetStarted = () => {
+    navigate("/unauthorized");
+  };
   return (
     <div className="landing-container">
       <nav className="navbar">
         <div className="logo">ExamPro</div>
         <ul className="nav-links">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#how-it-works">How It Works</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><button className="btn-primary">Get Started</button></li>
+          <li>
+            <a href="#features">Features</a>
+          </li>
+          <li>
+            <a href="#how-it-works">How It Works</a>
+          </li>
+          <li>
+            <a href="#pricing">Pricing</a>
+          </li>
+          <li>
+            <a href="#contact">Contact</a>
+          </li>
+          <li>
+            <button className="btn-primary" onClick={() => handleGetStarted()}>
+              Get Started
+            </button>
+          </li>
         </ul>
       </nav>
 
@@ -20,11 +37,16 @@ const LandingPage: React.FC = () => {
         <div className="hero-text">
           <h1>Seamless Online Exam Platform</h1>
           <p>Conduct secure and reliable exams from anywhere, anytime.</p>
-          <button className="btn-primary">Start Your Free Trial</button>
+          <button className="btn-primary" onClick={() => handleGetStarted()}>
+            Start Your Free Trial
+          </button>
         </div>
         <div className="hero-image">
           {/* You can replace this with an actual image */}
-          <img src="https://via.placeholder.com/500x300?text=Online+Exam" alt="Online Exam" />
+          <img
+            src="https://via.placeholder.com/500x300?text=Online+Exam"
+            alt="Online Exam"
+          />
         </div>
       </header>
 
@@ -33,7 +55,9 @@ const LandingPage: React.FC = () => {
         <div className="features-cards">
           <div className="card">
             <h3>Secure Exams</h3>
-            <p>Ensure exam integrity with proctoring and anti-cheating measures.</p>
+            <p>
+              Ensure exam integrity with proctoring and anti-cheating measures.
+            </p>
           </div>
           <div className="card">
             <h3>Real-time Results</h3>
@@ -49,7 +73,10 @@ const LandingPage: React.FC = () => {
       <section id="how-it-works" className="how-it-works-section">
         <h2>How It Works</h2>
         <ol>
-          <li>Create your exam with our simple tools.<Registration /></li>
+          <li>
+            Create your exam with our simple tools.
+            <Registration />
+          </li>
           <li>Invite candidates via email or link.</li>
           <li>Monitor exams with live proctoring features.</li>
           <li>Get instant results and detailed reports.</li>
