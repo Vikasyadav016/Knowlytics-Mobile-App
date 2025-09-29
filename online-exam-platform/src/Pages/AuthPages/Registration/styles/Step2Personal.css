@@ -1,295 +1,95 @@
 .personal-details-main {
-  background: #fff;
-  padding: 2rem 2.5rem;
+  padding: 30px 40px;
+  background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 8px 18px rgba(118, 75, 162, 0.2);
-  max-width: 700px;
-  margin: 0 25px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #3c1361;
+  transition: all 0.3s ease;
 }
 
 .personal-details-heading {
-  font-size: 1.9rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: #5e2ca5;
-  letter-spacing: 1.3px;
+  margin-bottom: 1.5rem;
+  text-align: center;
   text-transform: uppercase;
-  text-shadow: 0 2px 4px rgba(118, 75, 162, 0.3);
+  letter-spacing: 1.2px;
 }
 
 .section {
-  margin-bottom: 5px;
-  display: flex;
-  flex-direction: column;
+  margin-top: 2px;
 }
 
 .label-text {
-  font-weight: 700;
-  font-size: 1.05rem;
-  margin-bottom: 0.6rem;
-  color: #6e4aa2;
-  letter-spacing: 0.03em;
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  color: #5e2ca5;
 }
 
-input[type="file"] {
-  cursor: pointer;
-  padding: 8px 0;
-  font-size: 1.1rem;
-  color: #5a2d91;
+.input {
+  width: 100%;
+  padding: 0.75rem 0rem;
   border-radius: 8px;
   border: 2px solid #d3cce3;
-  background: linear-gradient(145deg, #f9f8ff, #e6e1fa);
+  background: linear-gradient(145deg, #f0eaff, #d9cff6);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3c1361;
+  outline: none;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f9f9f9;
+  cursor: pointer;
 }
 
-input[type="file"]:hover {
+.input:focus {
   border-color: #764ba2;
   box-shadow: 0 0 8px #764ba2aa;
 }
 
-input[type="file"]:focus {
-  outline: none;
-  border-color: #5a2d91;
-  box-shadow: 0 0 12px #5a2d91cc;
+input[type="file"] {
+  font-size: 14px;
+  color: #555;
 }
 
 img {
-  margin-top: 12px;
-  width: 90px;
-  height: 90px;
+  display: block;
+  margin-top: 10px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(118, 75, 162, 0.3);
-  align-self: center;
-  transition: transform 0.3s ease;
+  border-radius: 8px;
+  border: 1px solid #ddd;
 }
 
-img:hover {
-  transform: scale(1.05);
-}
-
-/* Existing input and select styles */
-input[type="text"],
-input[type="email"],
-input[type="number"],
-input[type="password"],
-select {
-  width: 100%;
-  padding: 0.85rem 1.2rem;
-  border-radius: 12px;
-  border: 2.5px solid #d3cce3;
-  background: linear-gradient(145deg, #f8f7ff, #e3ddf8);
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #3c1361;
-  outline: none;
-  transition: border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease;
-  box-sizing: border-box;
-  box-shadow: inset 1px 1px 3px #ffffffaa, inset -1px -1px 3px #d9c2ff;
-  cursor: text;
-  user-select: text;
-}
-
-input[type="text"]::placeholder,
-input[type="email"]::placeholder,
-input[type="number"]::placeholder,
-input[type="password"]::placeholder,
-select::placeholder {
-  color: #b3a3da;
-  font-weight: 500;
-  font-style: italic;
-}
-
-input[type="text"]:hover,
-input[type="email"]:hover,
-input[type="number"]:hover,
-input[type="password"]:hover,
-select:hover {
-  border-color: #9878d9;
-  box-shadow: 0 0 6px #9878d9aa;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="number"]:focus,
-input[type="password"]:focus,
-select:focus {
-  border-color: #764ba2;
-  box-shadow: 0 0 12px #764ba2cc;
-  background: linear-gradient(145deg, #ece8ff, #dcd4ff);
-}
-
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  padding-right: 2.8rem;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='14' height='10' viewBox='0 0 14 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23764ba2' stroke-width='2' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1.2rem center;
-  background-size: 14px 10px;
-  cursor: pointer;
-}
-
-/* -- New textarea styles (matching inputs/selects) -- */
-textarea {
-  width: 100%;
-  padding: 0.85rem 1.2rem;
-  border-radius: 12px;
-  border: 2.5px solid #d3cce3;
-  background: linear-gradient(145deg, #f8f7ff, #e3ddf8);
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #3c1361;
-  outline: none;
-  transition: border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease;
-  box-sizing: border-box;
-  box-shadow: inset 1px 1px 3px #ffffffaa, inset -1px -1px 3px #d9c2ff;
-  resize: vertical;
-  min-height: 100px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  cursor: text;
-  user-select: text;
-}
-
-textarea::placeholder {
-  color: #b3a3da;
-  font-weight: 500;
-  font-style: italic;
-}
-
-textarea:hover {
-  border-color: #9878d9;
-  box-shadow: 0 0 6px #9878d9aa;
-}
-
-textarea:focus {
-  border-color: #764ba2;
-  box-shadow: 0 0 12px #764ba2cc;
-  background: linear-gradient(145deg, #ece8ff, #dcd4ff);
-}
-
-/* -- New checkbox and radio inputs styling -- */
-input[type="checkbox"],
-input[type="radio"] {
-  width: 18px;
-  height: 18px;
-  margin-right: 0.6rem;
-  cursor: pointer;
-  accent-color: #764ba2; /* modern purple accent */
-  vertical-align: middle;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 4px;
-  border: 2px solid #d3cce3;
-  background: white;
-  box-shadow: inset 1px 1px 3px #ffffffaa, inset -1px -1px 3px #d9c2ff;
-}
-
-input[type="checkbox"]:hover,
-input[type="radio"]:hover {
-  border-color: #9878d9;
-  box-shadow: 0 0 6px #9878d9aa;
-}
-
-input[type="checkbox"]:focus,
-input[type="radio"]:focus {
-  outline: none;
-  border-color: #764ba2;
-  box-shadow: 0 0 12px #764ba2cc;
-}
-
-/* Optional label styling for inline check/radio */
-.checkbox-label,
-.radio-label {
-  display: flex;
-  align-items: center;
-  font-weight: 600;
-  color: #3c1361;
-  cursor: pointer;
-  user-select: none;
-}
-
-/* -- New button styles -- */
-input[type="button"],
-input[type="submit"],
-button {
-  padding: 0.95rem 1.2rem;
-  border-radius: 14px;
-  font-weight: 700;
-  font-size: 1.15rem;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 7px 20px rgba(118, 75, 162, 0.35);
-  color: white;
-  background: linear-gradient(135deg, #764ba2, #667eea);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-input[type="button"]:hover,
-input[type="submit"]:hover,
-button:hover {
-  background: linear-gradient(135deg, #5a2d91, #4a66d9);
-}
-
-/* Disabled inputs */
-input:disabled,
-select:disabled,
-textarea:disabled,
-input[type="checkbox"]:disabled,
-input[type="radio"]:disabled,
-input[type="button"]:disabled,
-input[type="submit"]:disabled,
-button:disabled {
-  background: #f2eff9;
-  border-color: #b8b2d9;
-  color: #999;
-  cursor: not-allowed;
-  box-shadow: none;
-  accent-color: initial;
-}
-
-/* Error styling */
 .error {
   color: #e03e3e;
-  font-size: 0.9rem;
-  margin-top: 0.35rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-weight: 600;
   animation: shake 0.3s ease;
-  user-select: none;
-}
-
-/* Shake animation for errors */
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-6px); }
-  40%, 80% { transform: translateX(6px); }
 }
 
 .form-buttons {
-  margin-top: 2.8rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: space-between;
-  gap: 1.2rem;
+  gap: 1rem;
 }
 
 .form-buttons button {
   flex: 1;
-  padding: 0.95rem 0;
-  border-radius: 14px;
+  padding: 0.75rem 0;
+  border-radius: 10px;
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 1rem;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 7px 20px rgba(118, 75, 162, 0.35);
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(118, 75, 162, 0.25);
   color: white;
   background: linear-gradient(135deg, #764ba2, #667eea);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .form-buttons button:first-child {
@@ -299,26 +99,19 @@ button:disabled {
   transition: background-color 0.3s ease;
 }
 
-.form-buttons button:first-child:hover {
-  background: #b3b3b3;
+.form-buttons button:last-child {
+  background-color: #b3b3b3;
+  color: #fff;
 }
-
 .form-buttons button:last-child:hover {
   background: linear-gradient(135deg, #5a2d91, #4a66d9);
 }
 
-/* Responsive */
-@media (max-width: 480px) {
-  .personal-details-main {
-    padding: 1.5rem 1.8rem;
-    max-width: 100%;
-  }
+.form-buttons button:hover {
+  transform: translateY(-2px);
+}
 
-  .form-buttons {
-    flex-direction: column;
-  }
-
-  .form-buttons button {
-    width: 100%;
-  }
+.form-buttons button:active {
+  transform: translateY(0);
+  opacity: 0.9;
 }

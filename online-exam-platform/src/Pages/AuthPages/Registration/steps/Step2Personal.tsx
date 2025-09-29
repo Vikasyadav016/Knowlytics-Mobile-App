@@ -51,26 +51,26 @@ const Step2Personal: React.FC<Props> = ({ onNext, onSave, formData }) => {
       <h3 className='personal-details-heading'>Personal Details</h3>
 
       <div className='section'>
-        <label className='label-text'>Upload Image:</label><br />
-        <input type="file" accept="image/*" onChange={handleImageChange} />
+        <label className='label-text'>Upload Image:</label>
+        <input className='input' type="file" accept="image/*" onChange={handleImageChange} />
         {preview && <img src={preview} alt="preview" style={{ width: '80px', marginTop: '10px', borderRadius: '5px' }} />}
       </div>
 
       <div className='section'>
-        <label className='label-text'>Full Name:</label><br />
-        <input {...register("name", { required: "Name is required" })} />
+        <label className='label-text'>Full Name:</label>
+        <input className='input' {...register("name", { required: "Name is required" })} />
         {errors.name && <p className="error">{errors.name.message}</p>}
       </div>
 
       <div className='section'>
-        <label className='label-text'>Email:</label><br />
-        <input type="email" {...register("email", { required: "Email is required" })} />
+        <label className='label-text'>Email:</label>
+        <input className='input' type="email" {...register("email", { required: "Email is required" })} />
         {errors.email && <p className="error">{errors.email.message}</p>}
       </div>
 
       <div className='section'>
-        <label className='label-text'>Contact No:</label><br />
-        <input {...register("contactNo", {
+        <label className='label-text'>Contact No:</label>
+        <input className='input' {...register("contactNo", {
           required: "Contact is required",
           pattern: { value: /^[0-9]{10}$/, message: "Enter 10-digit contact number" }
         })} />
@@ -78,8 +78,8 @@ const Step2Personal: React.FC<Props> = ({ onNext, onSave, formData }) => {
       </div>
 
       <div className='section'>
-        <label className='label-text'>Aadhaar No:</label><br />
-        <input {...register("aadhaarNo", {
+        <label className='label-text'>Aadhaar No:</label>
+        <input className='input' {...register("aadhaarNo", {
           required: "Aadhaar is required",
           pattern: { value: /^[0-9]{12}$/, message: "Enter 12-digit Aadhaar number" }
         })} />
