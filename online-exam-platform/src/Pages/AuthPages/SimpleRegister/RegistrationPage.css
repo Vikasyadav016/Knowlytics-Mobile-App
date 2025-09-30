@@ -1,0 +1,4 @@
+/* RegistrationPage.css */
+input:focus {
+  box-shadow: 0 0 5px rgba(128, 90, 213, 0.6);
+}

@@ -13,7 +13,9 @@ import ProtectedRoute from "./CommonComponents/ProtectedRoutes";
 import UserLayout from "./AuthVerifiedLayout/UserLayout";
 import UserDashboard from "./AuthVerifiedLayout/UserDashboard";
 import LoginPage from "./Pages/AuthPages/AuthMainPage/Login";
-import Registration from "./Pages/AuthPages/Registration/Registration";
+// import Registration from "./Pages/AuthPages/Registration/Registration";
+import RegistrationPage from "./Pages/AuthPages/SimpleRegister/Register"
+
 
 function App() {
   return (
@@ -31,7 +33,7 @@ function App() {
           <Route path="/unauthorized" element={<UnauthorizedLayout />}>
             <Route index element={<LoginPage />} />
             {/* <Route path="register" element={<Registration />} /> */}
-            <Route path="register" element={<Registration />} />
+            <Route path="register" element={<RegistrationPage />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />
