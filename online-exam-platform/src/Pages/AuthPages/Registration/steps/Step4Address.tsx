@@ -25,8 +25,8 @@ const Step4Address: React.FC<Props> = ({ onNext, onSave, formData }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h3>Address Details</h3>
+    <form onSubmit={handleSubmit(onSubmit)} className='address-details-main'>
+      <h3 className='address-details-heading'>Address Details</h3>
 
       <label>State:</label>
       <select {...register("state", { required: "State is required" })}>
@@ -34,7 +34,7 @@ const Step4Address: React.FC<Props> = ({ onNext, onSave, formData }) => {
         <option value="State1">State 1</option>
         <option value="State2">State 2</option>
       </select>
-      {errors.state && <p className="error">{errors.state.message}</p>}
+      {errors.state && <p className="error">State is required</p>}
 
       <label>District:</label>
       <select {...register("district", { required: "District is required" })}>
@@ -42,25 +42,25 @@ const Step4Address: React.FC<Props> = ({ onNext, onSave, formData }) => {
         <option value="District1">District 1</option>
         <option value="District2">District 2</option>
       </select>
-      {errors.district && <p className="error">{errors.district.message}</p>}
+      {errors.district && <p className="error">District is required</p>}
 
-      <input placeholder="Village" {...register("village", { required: "Village is required" })} />
-      {errors.village && <p className="error">{errors.village.message}</p>}
+      <input className='input-field' placeholder="Village" {...register("village", { required: "Village is required" })} />
+      {errors.village && <p className="error">Village is required</p>}
 
-      <input placeholder="Post Office" {...register("postOffice", { required: "Post Office is required" })} />
-      {errors.postOffice && <p className="error">{errors.postOffice.message}</p>}
+      <input className='input-field' placeholder="Post Office" {...register("postOffice", { required: "Post Office is required" })} />
+      {errors.postOffice && <p className="error">Post office is required</p>}
 
-      <input placeholder="Ward No" {...register("wardNo", { required: "Ward No is required" })} />
-      {errors.wardNo && <p className="error">{errors.wardNo.message}</p>}
+      <input className='input-field' placeholder="Ward No" {...register("wardNo", { required: "Ward No is required" })} />
+      {errors.wardNo && <p className="error">Ward no is required</p>}
 
-      <input
+      <input className='input-field'
         placeholder="Pincode"
         {...register("pincode", {
           required: "Pincode is required",
           pattern: { value: /^[0-9]{6}$/, message: "Enter 6-digit pincode" }
         })}
       />
-      {errors.pincode && <p className="error">{errors.pincode.message}</p>}
+      {errors.pincode && <p className="error">Pincode is required</p>}
 
       <div className="form-buttons">
         <button type="button" onClick={handleSubmit(onSave)}>Save</button>

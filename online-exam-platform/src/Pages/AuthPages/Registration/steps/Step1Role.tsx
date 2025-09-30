@@ -28,7 +28,7 @@ const Step1Role: React.FC<Props> = ({ onNext, onSave, formData }) => {
         <option value="Examee">Examee</option>
         <option value="Admin">Admin</option>
       </select>
-      {errors.role && <p className="error">{errors.role.message}</p>}
+      {errors.role && <p className="error">Role is required</p>}
 
       <div className="form-buttons">
         <button type="button" onClick={handleSubmit(onSave)}>Save</button>

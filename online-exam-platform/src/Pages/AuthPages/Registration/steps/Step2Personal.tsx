@@ -52,38 +52,38 @@ const Step2Personal: React.FC<Props> = ({ onNext, onSave, formData }) => {
 
       <div className='section'>
         <label className='label-text'>Upload Image:</label>
-        <input className='input' type="file" accept="image/*" onChange={handleImageChange} />
+        <input placeholder='Upload Image' className='input' type="file" accept="image/*" onChange={handleImageChange} />
         {preview && <img src={preview} alt="preview" style={{ width: '80px', marginTop: '10px', borderRadius: '5px' }} />}
       </div>
 
       <div className='section'>
         <label className='label-text'>Full Name:</label>
-        <input className='input' {...register("name", { required: "Name is required" })} />
-        {errors.name && <p className="error">{errors.name.message}</p>}
+        <input placeholder='Full Name' className='input' {...register("name", { required: "Name is required" })} />
+        {errors.name && <p className="error">Name is required</p>}
       </div>
 
       <div className='section'>
         <label className='label-text'>Email:</label>
-        <input className='input' type="email" {...register("email", { required: "Email is required" })} />
-        {errors.email && <p className="error">{errors.email.message}</p>}
+        <input placeholder='Email' className='input' type="email" {...register("email", { required: "Email is required" })} />
+        {errors.email && <p className="error">"Email is required"</p>}
       </div>
 
       <div className='section'>
         <label className='label-text'>Contact No:</label>
-        <input className='input' {...register("contactNo", {
+        <input placeholder='Contact No' className='input' {...register("contactNo", {
           required: "Contact is required",
           pattern: { value: /^[0-9]{10}$/, message: "Enter 10-digit contact number" }
         })} />
-        {errors.contactNo && <p className="error">{errors.contactNo.message}</p>}
+        {errors.contactNo && <p className="error">Contact no is required</p>}
       </div>
 
       <div className='section'>
         <label className='label-text'>Aadhaar No:</label>
-        <input className='input' {...register("aadhaarNo", {
+        <input placeholder='Aadhaar No' className='input' {...register("aadhaarNo", {
           required: "Aadhaar is required",
           pattern: { value: /^[0-9]{12}$/, message: "Enter 12-digit Aadhaar number" }
         })} />
-        {errors.aadhaarNo && <p className="error">{errors.aadhaarNo.message}</p>}
+        {errors.aadhaarNo && <p className="error">"Aadhaar number is required"</p>}
       </div>
 
       <div className="form-buttons">

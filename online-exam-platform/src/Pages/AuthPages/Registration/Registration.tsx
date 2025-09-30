@@ -47,23 +47,25 @@ const Registration: React.FC = () => {
     <>
       <div className="registration-bg">
         <div className="registration-container">
-          <div className="step-card">
-            <StepIndicator
-              steps={steps}
-              currentStep={currentStep}
-              completed={completedSteps}
-            />
-          </div>
-          <div className="form-card">
-            {step < 7 && (
-              <StepForm
-                step={currentStep}
-                onNext={handleNext}
-                onSave={handleSave}
-                formData={formData}
-              />
-            )}
-          </div>
+          {step < 7 && (
+            <>
+              <div className="step-card">
+                <StepIndicator
+                  steps={steps}
+                  currentStep={currentStep}
+                  completed={completedSteps}
+                />
+              </div>
+              <div className="form-card">
+                <StepForm
+                  step={currentStep}
+                  onNext={handleNext}
+                  onSave={handleSave}
+                  formData={formData}
+                />
+              </div>
+            </>
+          )}
           <div>
             {step === 7 && (
               <Step8Preview

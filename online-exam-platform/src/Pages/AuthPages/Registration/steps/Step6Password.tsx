@@ -28,16 +28,16 @@ const Step6Password: React.FC<Props> = ({ onNext, onSave, formData }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className='password-details-main'>
       <h3>Create Password</h3>
 
-      <input type="password" placeholder="Password" {...register("password", {
+      <input className='input-field' type="password" placeholder="Password" {...register("password", {
         required: "Password is required",
         minLength: { value: 6, message: "Min 6 characters" }
       })} />
       {errors.password && <p className="error">{errors.password.message}</p>}
 
-      <input type="password" placeholder="Confirm Password" {...register("confirmPassword", {
+      <input className='input-field' type="password" placeholder="Confirm Password" {...register("confirmPassword", {
         required: "Confirm your password",
         validate: (value) => value === password || "Passwords do not match"
       })} />

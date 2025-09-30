@@ -25,7 +25,8 @@
   display: block;
   font-size: 15px;
   font-weight: 500;
-  color: #5e2ca5;
+  color: black;
+  margin-bottom: 2px;
 }
 
 .input {

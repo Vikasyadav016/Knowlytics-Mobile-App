@@ -1,6 +1,7 @@
 // components/Registration/steps/Step3Guardian.tsx
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import "../styles/Step3Guardian.css"
 
 interface Props {
   onNext: (data: any) => void;
@@ -24,10 +25,10 @@ const Step3Guardian: React.FC<Props> = ({ onNext, onSave, formData }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h3>Guardian Details</h3>
+    <form onSubmit={handleSubmit(onSubmit)} className='gardian-details-main'>
+      <h3 className='gadian-details-heading'>Guardian Details</h3>
 
-      <input placeholder="Father Name" {...register("fatherName", { required: true })} />
+      <input className='input-field' placeholder="Father Name" {...register("fatherName", { required: true })} />
       {errors.fatherName && <p className="error">Father name is required</p>}
 
       <input placeholder="Mother Name" {...register("motherName", { required: true })} />
@@ -37,13 +38,13 @@ const Step3Guardian: React.FC<Props> = ({ onNext, onSave, formData }) => {
         required: true,
         pattern: { value: /^[0-9]{10}$/, message: "Enter valid 10-digit contact" }
       })} />
-      {errors.guardianContact && <p className="error">{errors.guardianContact.message}</p>}
+      {errors.guardianContact && <p className="error">"Guardian contact is required"</p>}
 
       <input placeholder="Guardian Aadhaar" {...register("guardianAadhaar", {
         required: true,
         pattern: { value: /^[0-9]{12}$/, message: "Enter 12-digit Aadhaar" }
       })} />
-      {errors.guardianAadhaar && <p className="error">{errors.guardianAadhaar.message}</p>}
+      {errors.guardianAadhaar && <p className="error">"Guardian aadhaar is required"</p>}
 
       <input placeholder="Guardian Email" {...register("guardianEmail", { required: true })} />
       {errors.guardianEmail && <p className="error">Email is required</p>}
